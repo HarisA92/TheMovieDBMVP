@@ -20,15 +20,15 @@ public class TopMoviesPresenter implements TopMoviesActivityMVP.Presenter {
     @Override
     public void loadData() {
         compositeDisposable.add(model.result().subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<MovieResult>() {
-                    @Override
-                    public void accept(MovieResult movieResult) throws Exception {
-                        if(view != null){
-                            new ViewModel(movieResult.getTitle(), movieResult.getPosterPath());
-                        }
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(new Consumer<MovieResult>() {
+                @Override
+                public void accept(MovieResult movieResult) throws Exception {
+                    if(view != null){
+                        new ViewModel(movieResult.getTitle(), movieResult.getPosterPath());
                     }
-                }));
+                }
+            }));
     }
 
     @Override
