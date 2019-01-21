@@ -1,6 +1,7 @@
 package com.themovie.themoviedb_mvp.topmovies;
 
 import com.themovie.themoviedb_mvp.retrofit.ModelClient;
+import com.themovie.themoviedb_mvp.retrofit.RetrofitClient;
 
 import javax.inject.Singleton;
 
@@ -11,19 +12,19 @@ import dagger.Provides;
 public class TopMoviesModule {
 
     @Provides
-    public TopMoviesPresenter provideTopMoviesPresenter(TopMoviesModel topMoviesModel){
+    public TopMoviesActivityMVP.Presenter provideTopMoviesActivityPresenter(TopMoviesActivityMVP.Model topMoviesModel) {
         return new TopMoviesPresenter(topMoviesModel);
     }
 
     @Provides
-    public TopMoviesModel provideTopMoviesModel(TopMoviesRepository topMoviesRepository){
-        return new TopMoviesModel(topMoviesRepository);
+    public TopMoviesActivityMVP.Model provideTopMoviesActivityModel(Repository repository) {
+        return new TopMoviesModel(repository);
     }
 
     @Singleton
     @Provides
-    public TopMoviesRepository provideTopMovieRepository(ModelClient modelClient){
-        return new TopMoviesRepository(modelClient);
+    public Repository provideRepository(RetrofitClient retrofitClient) {
+        return new TopMoviesRepository(retrofitClient);
     }
 
 }

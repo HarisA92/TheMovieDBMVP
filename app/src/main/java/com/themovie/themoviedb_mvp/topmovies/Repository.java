@@ -8,8 +8,5 @@ import io.reactivex.Observable;
 public interface Repository {
 
     Observable <MovieResult> getMoviesFromNetwork();
-    Observable <String> getTvShowsFromNetwork();
-    Observable <String> getTitleData();
-    Observable <MovieResult> getResultData();
 
 }

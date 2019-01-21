@@ -1,10 +1,13 @@
 package com.themovie.themoviedb_mvp.topmovies;
 
 import com.themovie.themoviedb_mvp.retrofit.ModelClient;
+import com.themovie.themoviedb_mvp.retrofit.RetrofitClient;
 import com.themovie.themoviedb_mvp.retrofit.model.MovieResult;
 import com.themovie.themoviedb_mvp.retrofit.model.TopRatedMovies;
 
 import java.util.ArrayList;
+
+import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
@@ -16,16 +19,17 @@ import io.reactivex.schedulers.Schedulers;
 
 public class TopMoviesRepository implements Repository {
 
-    private ModelClient modelClient;
+    private RetrofitClient modelClient;
     private ArrayList<MovieResult> list;
 
-    public TopMoviesRepository(ModelClient modelClient) {
+    TopMoviesRepository(RetrofitClient modelClient) {
         this.modelClient = modelClient;
+        list = new ArrayList<>();
     }
 
     @Override
     public Observable<MovieResult> getMoviesFromNetwork() {
-        Observable<TopRatedMovies> topRatedMoviesObservable = modelClient.retrofitClient().getMovies(1);
+        Observable<TopRatedMovies> topRatedMoviesObservable = modelClient.getMovies(1);
         /*return topRatedMoviesObservable.concatMap(new Function<TopRatedMovies, ObservableSource<MovieResult>>() {
             @Override
             public ObservableSource<MovieResult> apply(TopRatedMovies topRatedMovies) {
@@ -48,21 +52,5 @@ public class TopMoviesRepository implements Repository {
                 list.add(movieResult);
             }
         });
-    }
-
-    @Override
-    public Observable<String> getTvShowsFromNetwork() {
-
-        return null;
-    }
-
-    @Override
-    public Observable<String> getTitleData() {
-        return null;
-    }
-
-    @Override
-    public Observable<MovieResult> getResultData() {
-        return null;
     }
 }

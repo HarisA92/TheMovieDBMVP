@@ -1,5 +1,7 @@
 package com.themovie.themoviedb_mvp.retrofit;
 
+import android.support.annotation.NonNull;
+
 import java.io.IOException;
 
 import dagger.Module;
@@ -21,7 +23,7 @@ public class ModelClient {
     private static final String API_KEY = "097bff8b86812605efe2030471a36a24";
 
     @Provides
-    public OkHttpClient provideClient() {
+    OkHttpClient provideClient() {
 
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
@@ -40,6 +42,7 @@ public class ModelClient {
         }).build();
     }
 
+    @NonNull
     @Provides
     public static Retrofit retrofit(String baseURL, OkHttpClient client){
         return new Retrofit.Builder()

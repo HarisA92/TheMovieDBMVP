@@ -18,7 +18,7 @@ public class TopMoviesModel implements TopMoviesActivityMVP.Model {
 
     private Repository repository;
 
-    public TopMoviesModel(Repository repository) {
+    TopMoviesModel(Repository repository) {
         this.repository = repository;
     }
 

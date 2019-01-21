@@ -13,7 +13,7 @@ public class TopMoviesPresenter implements TopMoviesActivityMVP.Presenter {
     private TopMoviesActivityMVP.View view;
     private CompositeDisposable compositeDisposable = null;
 
-    public TopMoviesPresenter(TopMoviesActivityMVP.Model model) {
+    TopMoviesPresenter(TopMoviesActivityMVP.Model model) {
         this.model = model;
     }
 
