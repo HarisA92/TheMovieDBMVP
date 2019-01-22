@@ -17,9 +17,9 @@ import java.util.ArrayList;
 
 public class TopMoviesAdapter extends RecyclerView.Adapter<TopMoviesAdapter.ViewHolder> {
 
-    private ArrayList<ViewModel> list;
+    private ArrayList<ModelHolder> list;
 
-    TopMoviesAdapter(ArrayList<ViewModel> list) {
+    TopMoviesAdapter(ArrayList<ModelHolder> list) {
         this.list = list;
     }
 
@@ -33,7 +33,7 @@ public class TopMoviesAdapter extends RecyclerView.Adapter<TopMoviesAdapter.View
     @Override
     public void onBindViewHolder(@NonNull TopMoviesAdapter.ViewHolder holder, int i) {
         Context context = holder.itemView.getContext();
-        ViewModel viewModel = list.get(i);
+        ModelHolder viewModel = list.get(i);
         holder.title.setText(viewModel.getMovieResult().getTitle());
         Glide.with(context).load(context.getResources().getString(R.string.imagePath) + viewModel.getMovieResult().getPosterPath())
                 .apply(RequestOptions.circleCropTransform())

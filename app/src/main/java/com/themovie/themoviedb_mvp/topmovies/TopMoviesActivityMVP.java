@@ -1,14 +1,12 @@
 package com.themovie.themoviedb_mvp.topmovies;
 
-import com.themovie.themoviedb_mvp.retrofit.model.MovieResult;
-
 import io.reactivex.Observable;
 
 public interface TopMoviesActivityMVP {
 
     interface View {
         void networkConnection();
-        void updateData(ViewModel viewModel);
+        void updateData(ModelHolder viewModel);
         void toastMessageError(String toast);
     }
 
@@ -19,6 +17,6 @@ public interface TopMoviesActivityMVP {
     }
 
     interface Model {
-        Observable<ViewModel> result();
+        Observable<ModelHolder> result();
     }
 }

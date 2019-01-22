@@ -1,7 +1,6 @@
 package com.themovie.themoviedb_mvp.topmovies;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
@@ -21,9 +20,9 @@ public class TopMoviesPresenter implements TopMoviesActivityMVP.Presenter {
         disposable = model.result()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<ViewModel>() {
+                .subscribe(new Consumer<ModelHolder>() {
                     @Override
-                    public void accept(ViewModel viewModel) throws Exception {
+                    public void accept(ModelHolder viewModel) throws Exception {
                         if (view != null) {
                             view.updateData(viewModel);
                         }

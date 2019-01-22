@@ -3,12 +3,12 @@ package com.themovie.themoviedb_mvp.topmovies;
 import com.themovie.themoviedb_mvp.retrofit.model.MovieResult;
 import com.themovie.themoviedb_mvp.retrofit.model.TvShowResult;
 
-public class ViewModel {
+public class ModelHolder {
 
     private MovieResult movieResult;
     private TvShowResult tvShowResult;
 
-    public ViewModel(MovieResult movieResult, TvShowResult tvShowResult) {
+    ModelHolder(MovieResult movieResult, TvShowResult tvShowResult) {
         this.movieResult = movieResult;
         this.tvShowResult = tvShowResult;
     }

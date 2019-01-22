@@ -13,15 +13,13 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.themovie.themoviedb_mvp.R;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 public class TvShowsAdapter extends RecyclerView.Adapter<TvShowsAdapter.ViewHolder> {
 
-    private ArrayList<ViewModel> list;
+    private ArrayList<ModelHolder> list;
 
-    public TvShowsAdapter(ArrayList<ViewModel> list) {
+    public TvShowsAdapter(ArrayList<ModelHolder> list) {
         this.list = list;
     }
 
@@ -35,7 +33,7 @@ public class TvShowsAdapter extends RecyclerView.Adapter<TvShowsAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull TvShowsAdapter.ViewHolder holder, int i) {
         Context context = holder.itemView.getContext();
-        ViewModel viewModel = list.get(i);
+        ModelHolder viewModel = list.get(i);
         holder.title.setText(viewModel.getMovieResult().getTitle());
         Glide.with(context).load(context.getResources().getString(R.string.imagePath) + viewModel.getMovieResult().getPosterPath())
                 .apply(RequestOptions.circleCropTransform())
