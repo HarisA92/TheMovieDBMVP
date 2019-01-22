@@ -1,6 +1,7 @@
 package com.themovie.themoviedb_mvp.topmovies;
 
 import com.themovie.themoviedb_mvp.retrofit.model.MovieResult;
+import com.themovie.themoviedb_mvp.retrofit.model.TvShowResult;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -23,7 +24,12 @@ public class TopMoviesModel implements TopMoviesActivityMVP.Model {
     }
 
     @Override
-    public Observable<MovieResult> result() {
-        return repository.getMoviesFromNetwork();
+    public Observable<ViewModel> result() {
+        return Observable.zip(repository.getMoviesFromNetwork(), repository.getTvShowsFromNetwork(), new BiFunction<MovieResult, TvShowResult, ViewModel>() {
+            @Override
+            public ViewModel apply(MovieResult movieResult, TvShowResult tvShowResult) throws Exception {
+                return new ViewModel(movieResult, tvShowResult);
+            }
+        });
     }
 }

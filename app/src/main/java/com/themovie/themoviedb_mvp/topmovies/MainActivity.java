@@ -20,23 +20,36 @@ public class MainActivity extends AppCompatActivity implements TopMoviesActivity
 
     @Inject
     TopMoviesActivityMVP.Presenter presenter;
-    ArrayList<ViewModel> list = new ArrayList<>();
-    private TopMoviesAdapter adapter;
+    private ArrayList<ViewModel> movieList = new ArrayList<>();
+    private ArrayList<ViewModel> tvshowList = new ArrayList<>();
+    private TvShowsAdapter tvShowsAdapter;
+    private TopMoviesAdapter topMoviesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ((App)getApplication()).getComponent().injectMainActivity(this);
+        buildRecyclerViewMovie();
+        buildRecyclerViewTvShow();
+    }
 
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+    private void buildRecyclerViewMovie(){
+        RecyclerView recyclerViewMovie = findViewById(R.id.recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
+        recyclerViewMovie.setLayoutManager(layoutManager);
+        recyclerViewMovie.setHasFixedSize(true);
+        topMoviesAdapter = new TopMoviesAdapter(movieList);
+        recyclerViewMovie.setAdapter(topMoviesAdapter);
+    }
 
-        adapter = new TopMoviesAdapter(list);
-        recyclerView.setAdapter(adapter);
-
+    private void buildRecyclerViewTvShow(){
+        RecyclerView recyclerViewTvShow = findViewById(R.id.recycler_view_tvshows);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerViewTvShow.setLayoutManager(layoutManager);
+        recyclerViewTvShow.setHasFixedSize(true);
+        tvShowsAdapter = new TvShowsAdapter(tvshowList);
+        recyclerViewTvShow.setAdapter(tvShowsAdapter);
     }
 
     @Override
@@ -60,8 +73,10 @@ public class MainActivity extends AppCompatActivity implements TopMoviesActivity
 
     @Override
     public void updateData(ViewModel viewModel) {
-        list.add(viewModel);
-        adapter.notifyDataSetChanged();
+        movieList.add(viewModel);
+        tvshowList.add(viewModel);
+        topMoviesAdapter.notifyDataSetChanged();
+        tvShowsAdapter.notifyDataSetChanged();
     }
 
     @Override

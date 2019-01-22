@@ -19,6 +19,6 @@ public interface TopMoviesActivityMVP {
     }
 
     interface Model {
-        Observable<MovieResult> result();
+        Observable<ViewModel> result();
     }
 }

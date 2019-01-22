@@ -13,25 +13,27 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.themovie.themoviedb_mvp.R;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.zip.Inflater;
 
-public class TopMoviesAdapter extends RecyclerView.Adapter<TopMoviesAdapter.ViewHolder> {
+public class TvShowsAdapter extends RecyclerView.Adapter<TvShowsAdapter.ViewHolder> {
 
     private ArrayList<ViewModel> list;
 
-    TopMoviesAdapter(ArrayList<ViewModel> list) {
+    public TvShowsAdapter(ArrayList<ViewModel> list) {
         this.list = list;
     }
 
     @NonNull
     @Override
-    public TopMoviesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.topmovies_list, viewGroup, false);
+    public TvShowsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.toptvshows_list, viewGroup, false);
         return new ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TopMoviesAdapter.ViewHolder holder, int i) {
+    public void onBindViewHolder(@NonNull TvShowsAdapter.ViewHolder holder, int i) {
         Context context = holder.itemView.getContext();
         ViewModel viewModel = list.get(i);
         holder.title.setText(viewModel.getMovieResult().getTitle());
@@ -52,8 +54,10 @@ public class TopMoviesAdapter extends RecyclerView.Adapter<TopMoviesAdapter.View
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
             title = itemView.findViewById(R.id.titleMovie);
             image = itemView.findViewById(R.id.imageMovie);
+
         }
     }
 }

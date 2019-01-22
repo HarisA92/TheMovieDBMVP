@@ -1,28 +1,31 @@
 package com.themovie.themoviedb_mvp.topmovies;
 
+import com.themovie.themoviedb_mvp.retrofit.model.MovieResult;
+import com.themovie.themoviedb_mvp.retrofit.model.TvShowResult;
+
 public class ViewModel {
 
-    private String image;
-    private String title;
+    private MovieResult movieResult;
+    private TvShowResult tvShowResult;
 
-    public ViewModel(String image, String title) {
-        this.image = image;
-        this.title = title;
+    public ViewModel(MovieResult movieResult, TvShowResult tvShowResult) {
+        this.movieResult = movieResult;
+        this.tvShowResult = tvShowResult;
     }
 
-    public String getImage() {
-        return image;
+    public MovieResult getMovieResult() {
+        return movieResult;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setMovieResult(MovieResult movieResult) {
+        this.movieResult = movieResult;
     }
 
-    public String getTitle() {
-        return title;
+    public TvShowResult getTvShowResult() {
+        return tvShowResult;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTvShowResult(TvShowResult tvShowResult) {
+        this.tvShowResult = tvShowResult;
     }
 }
